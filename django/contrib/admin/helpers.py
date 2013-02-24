@@ -290,6 +290,9 @@ class InlineAdminForm(AdminForm):
     def pk_field(self):
         return AdminField(self.form, self.formset._pk_field.name, False)
 
+    def pk_field_name(self):
+        return self.formset._pk_field.name
+
     def fk_field(self):
         fk = getattr(self.formset, "fk", None)
         if fk:

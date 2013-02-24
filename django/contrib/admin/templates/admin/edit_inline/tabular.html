@@ -47,6 +47,13 @@
               <td{% if field.field.name %} class="field-{{ field.field.name }}"{% endif %}>
               {% if field.is_readonly %}
                   <p>{{ field.contents }}</p>
+                  {% if inline_admin_form.pk_field_name == field.field.name %}
+                    <input type="hidden"
+                           value="{{ field.contents }}"
+                           id="id_{{ inline_admin_form.formset.prefix }}-{{ forloop.parentloop.parentloop.parentloop.counter0 }}-{{ field.field.name }}"
+                           name="{{ inline_admin_form.formset.prefix }}-{{ forloop.parentloop.parentloop.parentloop.counter0 }}-{{ field.field.name }}"
+                           readonly />
+                  {% endif %}
               {% else %}
                   {{ field.field.errors.as_ul }}
                   {{ field.field }}
